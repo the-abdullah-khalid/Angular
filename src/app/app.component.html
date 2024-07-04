@@ -1,12 +1,16 @@
 <div class="container">
-  <h3>Hi I am the app component</h3>
+  <app-cockpit 
+  (serverCreated)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+
   <hr>
 
-  <div>
-    <app-servers>
-    </app-servers>
+  <div class="row">
+    <div class="col-12">
+      <app-server-element *ngFor="let serverElement of serverElements"
+      [element]="serverElement"></app-server-element>
+    </div>
+    
   </div>
-  
 </div>
-
-
