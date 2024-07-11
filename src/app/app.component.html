@@ -1,13 +1,29 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <app-new-account (accountAdded)="onAccountAdded($event)"></app-new-account>
-      <hr>
-      <app-account
-        *ngFor="let acc of accounts; let i = index"
-        [account]="acc"
-        [id]="i"
-        (statusChanged)="onStatusChanged($event)"></app-account>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/servers">Servers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/users']">Users</a>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <br>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+
 </div>

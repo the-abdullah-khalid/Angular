@@ -1,35 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ServersService } from './servers.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
-export class ServersComponent {
-  allowNewServer = false;
-  serverCreationStatus='no server was created';
-  serverName='----';
-  serverCreated=false;
+export class ServersComponent implements OnInit {
+  public servers: {id: number, name: string, status: string}[] = [];
 
-  constructor() 
-  {
-    setTimeout(() => {
-      this.allowNewServer = true;
-    }, 2000);
+  constructor(private serversService: ServersService,private router:Router) { }
 
-    
+  ngOnInit() {
+    this.servers = this.serversService.getServers();
   }
-    onCreateServer()
-    {
-      debugger
-      this.serverCreated=true;
-      this.serverCreationStatus='Server is being created';
-    }
-    onUpdateServerName(event:Event)
-    {
-      this.serverName=(<HTMLInputElement>event.target).value; 
-    }
 
-  
+  onReload()
+  {
+    // this.router.navigate(['/users']);
+  }
+
 }
-
